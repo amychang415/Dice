@@ -5,8 +5,11 @@ void setup()
 }
 void draw()
 {
-	Die theDie = new Die(50,50);
+	for (int x = 0;x <= 300; x=x+30)
+	{
+	Die theDie = new Die(x,x,30);
 	theDie.show();	
+	}
 }
 void mousePressed()
 {
@@ -16,39 +19,76 @@ class Die //models one single dice cube
 {
 	int myX;
 	int myY;
+	int myW;
 	int myNum;//variable declarations here
 	
-	Die(int x, int y) //constructor
+	Die(int x, int y, int w) //constructor
 	{
+		myW = w;
 		myX = x;
 		myY = y;
 		roll();
 	}
 	void roll()
 	{
-		myNum = (int)(Math.random()*7);
+		myNum = (int)(Math.random()*6+1);
 	}
 	void show()
 	{
 		fill(255);
-		rect (myX,myY,30,30);
+		rect (myX,myY,myW,myW);
 		fill(0);
 
 		if (myNum == 1)
 		{
-			ellipse(myX+15,myY+15,3,3);
+			ellipse(myX+myW/2,myY+myW/2,myW/(myW/3),myW/(myW/3));
 		}
 		else if (myNum == 2)
 		{
 			for (int x = 1; x <= myNum; x++)
 			{
-			ellipse(myX+x*10,myY+x*10,3,3);
+			ellipse(myX+x*(myW/3),myY+x*(myW/3),myW/10,myW/10);
 			}
 		}
 		else if (myNum == 3)
 		{
 			for (int x = 1; x <= myNum; x++)
-			ellipse(myX,myY+x*10,3,3);
+			{
+			ellipse((myX+x*(myW/3))-(myW/3/2),myY+(x*(myW/3))-(myW/3/2),myW/10,myW/10);
+		}
+
+		}
+		else if (myNum == 4)
+		{
+			for (int x = 1; x <= myNum; x++)
+			{
+			ellipse((myX+(myW/3))-(myW/3/2),myY+(myW/3)-(myW/3/2),myW/10,myW/10);
+			ellipse((myX+3*(myW/3))-(myW/3/2),myY+(myW/3)-(myW/3/2),myW/10,myW/10);
+			ellipse((myX+(myW/3))-(myW/3/2),myY+3*(myW/3)-(myW/3/2),myW/10,myW/10);
+			ellipse((myX+3*(myW/3))-(myW/3/2),myY+3*(myW/3)-(myW/3/2),myW/10,myW/10);
+			}
+		}
+
+		else if (myNum == 5)
+		{
+			for (int x = 1; x <= myNum; x++)
+			{
+			ellipse((myX+(myW/3))-(myW/3/2),myY+(myW/3)-(myW/3/2),myW/10,myW/10);
+			ellipse((myX+3*(myW/3))-(myW/3/2),myY+(myW/3)-(myW/3/2),myW/10,myW/10);
+			ellipse((myX+(myW/3))-(myW/3/2),myY+3*(myW/3)-(myW/3/2),myW/10,myW/10);
+			ellipse((myX+3*(myW/3))-(myW/3/2),myY+3*(myW/3)-(myW/3/2),myW/10,myW/10);
+			ellipse(myX+myW/2,myY+myW/2,myW/(myW/3),myW/(myW/3));
+			}
+		}
+		else if (myNum == 6)
+		{
+			for (int x = 1; x <= myNum; x++)
+			{
+			if (x<4)
+			ellipse((myX+(myW/3))-(myW/3/2),myY+x*(myW/3)-(myW/3/2),myW/10,myW/10);
+			else
+			ellipse(myX+(myW)-(myW/3/2),myY+(x-3)*(myW/3)-(myW/3/2),myW/10,myW/10);
+			}
 		}
 
 	}
