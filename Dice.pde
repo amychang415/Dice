@@ -4,28 +4,31 @@ int rate = 1;
 void setup()
 {
 	size(300,300);
+	noLoop();
 }
 void draw()
 {
-	total = 0;
 	background(255);
-	for (int y = 0; y <= frameCount; y=y+30)
-	{
-		for (int x = 0; x <= frameCount; x=x+30)
-		{
-			//if (frameCount == rate*30)
-			{
-			Die theDie = new Die(x,y,30);
-			theDie.show();	
-			total = theDie.myNum + total;
-			rate ++;
-			}
-		}
-	}
+	makeDice();
 	fill(0);
 	textSize(30);
 	text("You rolled " + total,10,300);
 }
+
+void makeDice()
+{
+	total = 0;
+	for (int y = 0; y <= 260; y=y+30)
+	{
+		for (int x = 0; x <= 300; x=x+30)
+		{
+			Die theDie = new Die(x,y,30);
+			theDie.show();	
+			total = theDie.myNum + total;
+		}
+	}
+}
+
 void mousePressed()
 {
 	redraw();
